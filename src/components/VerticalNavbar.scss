@@ -1,0 +1,64 @@
+// noinspection SpellCheckingInspection
+
+$vert-bar-width: 110px;
+
+.vertbar {
+
+  width: $vert-bar-width;
+  position:fixed;
+
+  .side-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: $vert-bar-width;
+    width: $vert-bar-width;
+
+    margin-left: -$vert-bar-width;
+
+    border: none;
+    border-radius: 0;
+
+    padding-bottom: 40px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background-color: #222;
+
+    li {
+      width: 100%;
+      text-align: center;
+
+      a {
+        padding: 15px 7px 15px 3px;
+        i {
+          color: #aaaaaa;
+          font-size: 24px;
+          margin: 0 auto;
+          display:block;
+        }
+
+        span {
+          color: #aaaaaa;
+        }
+      }
+
+
+    }
+
+    li.active {
+      border-left: 2px solid #ef6262;
+
+      i {
+        color: #FEFEFE;
+      }
+
+      span {
+        color: #FEFEFE;
+      }
+    }
+  }
+
+
+}
