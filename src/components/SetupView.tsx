@@ -39,9 +39,9 @@ export default class SetupView extends React.Component<RouteComponentProps<{}>, 
   getStepContent(stepIndex: number) {
     switch (stepIndex) {
       case 0:
-        return 'Select campaign settings...';
+        return <h3>Upload and edit entities</h3>;
       case 1:
-        return 'What is an ad group anyways?';
+        return <h3>Upload and edit accounts</h3>;
       case 2:
         return 'This is the bit I really care about!';
       default:
@@ -53,7 +53,7 @@ export default class SetupView extends React.Component<RouteComponentProps<{}>, 
     const {finished, stepIndex} = this.state;
     const contentStyle = {margin: '0 16px'};
     return <div className="setup-view">
-      Setup
+      <h1>Setup</h1>
       <div>
         <div className="stepper" style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
           <Stepper activeStep={stepIndex}>
@@ -83,8 +83,10 @@ export default class SetupView extends React.Component<RouteComponentProps<{}>, 
             </p>
           ) : (
             <div>
+              <div>
               <p>{this.getStepContent(stepIndex)}</p>
-              <div style={{marginTop: 12}}>
+              </div>
+              <div style={{marginTop: 12, float: 'right'}}>
                 <FlatButton
                   label="Back"
                   disabled={stepIndex === 0}
