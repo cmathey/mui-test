@@ -1,6 +1,6 @@
 import {StyleRulesCallback, Theme} from "material-ui/styles";
 
-const drawerWidth = 192;
+const drawerWidth = 180;
 export const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
     width: '100%',
@@ -43,7 +43,7 @@ export const styles: StyleRulesCallback = (theme: Theme) => ({
     // textAlign: 'center'
   },
   navItemText: {
-    padding: '0 8px'
+    padding: '0 12px'
     // display: 'grid',
     // textAlign: 'center'
   },

@@ -1,49 +1,43 @@
 import * as React from 'react';
-// import './App.css';
-
 import {Route, RouteComponentProps, Switch} from 'react-router';
 import AppBar from 'material-ui/AppBar';
-import {DASH_PATH, SETUP_PATH} from './Path';
+import {DASH_PATH, SETUP_PATH, USERS_PATH} from './Path';
 import DashView from './components/DashView';
-import VerticalNavbar from './components/VerticalNavbar';
 import SetupView from "./components/SetupView";
 import Typography from "material-ui/Typography";
 import Toolbar from "material-ui/Toolbar";
 import IconButton from "material-ui/IconButton";
 import Drawer from "material-ui/Drawer";
 import Divider from "material-ui/Divider";
-import List from "material-ui/List";
+import {ListItemText} from "material-ui/List";
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import MenuIcon from 'material-ui-icons/Menu';
 import classNames from 'classnames';
+import DashboardIcon from 'material-ui-icons/Dashboard';
+import SettingsIcon from 'material-ui-icons/Settings';
+import UsersIcon from 'material-ui-icons/Group';
+
+import withStyles from "material-ui/styles/withStyles";
+import {styles} from './App.styles';
+import {darkTheme, lightTheme} from './App.theme';
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import {MenuItem} from "material-ui";
+import {Link} from "react-router-dom";
+import {Location} from "history";
+// import './App.css';
 
 // import DashView from './dash/DashView';
 // import Users from './users/Users';
 // import Entities from './entities/Entities';
 
 
-import {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
-import InboxIcon from 'material-ui-icons/MoveToInbox';
-import DraftsIcon from 'material-ui-icons/Drafts';
-import StarIcon from 'material-ui-icons/Star';
-import SendIcon from 'material-ui-icons/Send';
-import MailIcon from 'material-ui-icons/Mail';
-import DeleteIcon from 'material-ui-icons/Delete';
-import ReportIcon from 'material-ui-icons/Report';
-import DashboardIcon from 'material-ui-icons/Dashboard';
-import SettingsIcon from 'material-ui-icons/Settings';
-
-import withStyles from "material-ui/styles/withStyles";
-import {styles} from './App.styles';
-import {lightTheme, darkTheme} from './App.theme';
-import {StyleRulesCallback} from "material-ui/styles";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import createMuiTheme from "material-ui/styles/createMuiTheme";
-import {MenuItem} from "material-ui";
-import NavItem from "./components/mui/NavItem";
-import {Link} from "react-router-dom";
-import {Location} from "history";
-
+// const navRoutes = [
+//   {
+//     path: DASH_PATH,
+//     label: 'Dashboard',
+//     icon: <DashboardIcon/>
+//   }
+// ];
 
 function makeNavItem(classes: any, icon: any, label: string, path: string, location: Location): any {
   return (
@@ -51,7 +45,7 @@ function makeNavItem(classes: any, icon: any, label: string, path: string, locat
       <MenuItem className={classes.navItem} selected={location.pathname === path}>
         {icon}
         {/*<Typography type="body2" color="inherit" noWrap style={{marginTop: 4}}>*/}
-          {/*{label}*/}
+        {/*{label}*/}
         {/*</Typography>*/}
         <ListItemText className={classes.navItemText} primary={label}/>
       </MenuItem>
@@ -121,6 +115,9 @@ class App extends React.Component<any & RouteComponentProps<{}>, IAppState> {
                   }
                   {
                     makeNavItem(classes, <SettingsIcon className={classes.navIcon}/>, 'Setup', SETUP_PATH, location)
+                  }
+                  {
+                    makeNavItem(classes, <UsersIcon className={classes.navIcon}/>, 'Users', USERS_PATH, location)
                   }
                 </div>
               </Drawer>
