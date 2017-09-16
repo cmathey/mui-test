@@ -1,12 +1,6 @@
 import * as React from 'react';
 import {RouteComponentProps} from "react-router";
-import {
-  Step,
-  Stepper,
-  StepLabel,
-} from 'material-ui/Stepper';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
+import TextMobileStepper from './mui/TextMobileStepper'
 
 interface ISetupState {
   finished: boolean,
@@ -50,60 +44,17 @@ export default class SetupView extends React.Component<RouteComponentProps<{}>, 
   }
 
   render() {
+
     const {finished, stepIndex} = this.state;
     const contentStyle = {margin: '0 16px'};
-    return <div className="setup-view">
-      <h1>Setup</h1>
-      <div>
-        <div className="stepper" style={{width: '100%', maxWidth: 700, margin: 'auto'}}>
-          <Stepper activeStep={stepIndex}>
-            <Step>
-              <StepLabel>ENTITIES</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>ACCOUNTS</StepLabel>
-            </Step>
-            <Step>
-              <StepLabel>ACTUALS</StepLabel>
-            </Step>
-          </Stepper>
-        </div>
-        <div style={contentStyle}>
-          {finished ? (
-            <p>
-              <a
-                href="#"
-                onClick={(event) => {
-                  event.preventDefault();
-                  this.setState({stepIndex: 0, finished: false});
-                }}
-              >
-                Click here
-              </a> to reset the example.
-            </p>
-          ) : (
-            <div>
-              <div>
-              <p>{this.getStepContent(stepIndex)}</p>
-              </div>
-              <div style={{marginTop: 12, float: 'right'}}>
-                <FlatButton
-                  label="Back"
-                  disabled={stepIndex === 0}
-                  onClick={this.handlePrev}
-                  style={{marginRight: 12}}
-                />
-                <RaisedButton
-                  label={stepIndex === 2 ? 'Finish' : 'Next'}
-                  primary={true}
-                  onClick={this.handleNext}
-                />
-              </div>
-            </div>
-          )}
+    return (
+      <div className="setup-view">
+        <h1>Setup</h1>
+        <div>
+        <TextMobileStepper/>
         </div>
       </div>
-    </div>;
+    );
   }
 
 }

@@ -1,11 +1,8 @@
 import * as React from 'react';
 import {RouteComponentProps} from "react-router";
-import {NavLink} from "react-router-dom";
 import './VerticalNavbar.scss';
 import Drawer from "material-ui/Drawer";
-import MenuItem from "material-ui/MenuItem";
-import DashboardIcon from 'material-ui/svg-icons/action/dashboard';
-import {DASH_PATH, SETUP_PATH} from "../Path";
+import MenuItem from "material-ui/Menu/MenuItem";
 // import IconButton from "material-ui/IconButton";
 
 // const styles = {
@@ -22,21 +19,15 @@ export default (props: {
   opened: boolean
   children?: React.ReactNode;
 } & RouteComponentProps<{}>) => {
-  let location = props.location.pathname;
+  // let location = props.location.pathname;
   return (
-    <Drawer open={props.opened} width={128} containerStyle={{height: 'calc(100% - 64px)', top: 64}}>
+    <Drawer
+      type="persistent"
+      open={props.opened}
+    >
       <MenuItem>Menu Item</MenuItem>
-      <MenuItem
-        containerElement={<NavLink to={'/'} isActive={() => location === DASH_PATH} />}
-        leftIcon={<DashboardIcon/>}
-      />
-      <MenuItem
-        containerElement={<NavLink to={SETUP_PATH} isActive={() => location === SETUP_PATH} />}
-        primaryText="Setup"
+      <MenuItem/>
 
-        checked={location === SETUP_PATH}
-        leftIcon={<DashboardIcon/>}
-      />
     </Drawer>
   );
   // return <div className="vertbar">
