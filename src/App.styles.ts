@@ -1,6 +1,6 @@
 import {StyleRulesCallback, Theme} from "material-ui/styles";
 
-const drawerWidth = 240;
+const drawerWidth = 192;
 export const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
     width: '100%',
@@ -36,6 +36,16 @@ export const styles: StyleRulesCallback = (theme: Theme) => ({
   navIcon: {
     width: 48,
     height: 48,
+  },
+  navItem: {
+    height: 64,
+    // display: 'grid',
+    // textAlign: 'center'
+  },
+  navItemText: {
+    padding: '0 8px'
+    // display: 'grid',
+    // textAlign: 'center'
   },
   hide: {
     display: 'none',
@@ -78,5 +88,5 @@ export const styles: StyleRulesCallback = (theme: Theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-  },
+  }
 });

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {RouteComponentProps} from "react-router";
 import TextMobileStepper from './mui/TextMobileStepper'
+import Typography from "material-ui/Typography";
 
 interface ISetupState {
   finished: boolean,
@@ -46,10 +47,11 @@ export default class SetupView extends React.Component<RouteComponentProps<{}>, 
   render() {
 
     const {finished, stepIndex} = this.state;
-    const contentStyle = {margin: '0 16px'};
     return (
       <div className="setup-view">
-        <h1>Setup</h1>
+        <Typography type="display1" color="inherit" noWrap>
+          Setup
+        </Typography>
         <div>
         <TextMobileStepper/>
         </div>

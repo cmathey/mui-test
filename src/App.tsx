@@ -30,6 +30,9 @@ import SendIcon from 'material-ui-icons/Send';
 import MailIcon from 'material-ui-icons/Mail';
 import DeleteIcon from 'material-ui-icons/Delete';
 import ReportIcon from 'material-ui-icons/Report';
+import DashboardIcon from 'material-ui-icons/Dashboard';
+import SettingsIcon from 'material-ui-icons/Settings';
+
 import withStyles from "material-ui/styles/withStyles";
 import {styles} from './App.styles';
 import {lightTheme, darkTheme} from './App.theme';
@@ -37,64 +40,24 @@ import {StyleRulesCallback} from "material-ui/styles";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import createMuiTheme from "material-ui/styles/createMuiTheme";
 import {MenuItem} from "material-ui";
+import NavItem from "./components/mui/NavItem";
+import {Link} from "react-router-dom";
+import {Location} from "history";
 
-const drawerWidth = 240;
 
-
-const mailFolderListItems = (classes) => (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon className={classes.navIcon}/>
-      </ListItemIcon>
-      <ListItemText primary="Inbox"/>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <StarIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Starred"/>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <SendIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Send mail"/>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DraftsIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Drafts"/>
-    </ListItem>
-  </div>
-);
-
-export const otherMailFolderListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <MailIcon style={{
-          width: 36,
-          height: 36,
-        }}/>
-      </ListItemIcon>
-      <ListItemText primary="All mail"/>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DeleteIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Trash"/>
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ReportIcon/>
-      </ListItemIcon>
-      <ListItemText primary="Spam"/>
-    </ListItem>
-  </div>
-);
+function makeNavItem(classes: any, icon: any, label: string, path: string, location: Location): any {
+  return (
+    <Link to={path}>
+      <MenuItem className={classes.navItem} selected={location.pathname === path}>
+        {icon}
+        {/*<Typography type="body2" color="inherit" noWrap style={{marginTop: 4}}>*/}
+          {/*{label}*/}
+        {/*</Typography>*/}
+        <ListItemText className={classes.navItemText} primary={label}/>
+      </MenuItem>
+    </Link>
+  );
+}
 
 interface IAppState {
   drawerOpened: boolean
@@ -117,7 +80,7 @@ class App extends React.Component<any & RouteComponentProps<{}>, IAppState> {
   };
 
   render() {
-    const {classes} = this.props;
+    const {classes, location} = this.props;
 
     return (
       <MuiThemeProvider theme={lightTheme}>
@@ -153,44 +116,20 @@ class App extends React.Component<any & RouteComponentProps<{}>, IAppState> {
                     </IconButton>
                   </div>
                   <Divider/>
-                  <List className={classes.list}>
-                    <div>
-                      <ListItem button>
-                        <ListItemIcon>
-                          <InboxIcon className={classes.navIcon}/>
-                        </ListItemIcon>
-                        <ListItemText primary="Inbox"/>
-                      </ListItem>
-                      <ListItem button>
-                        <ListItemIcon>
-                          <StarIcon className={classes.navIcon}/>
-                        </ListItemIcon>
-                        <ListItemText primary="Starred"/>
-                      </ListItem>
-                      <ListItem button>
-                        <ListItemIcon>
-                          <SendIcon className={classes.navIcon}/>
-                        </ListItemIcon>
-                        <ListItemText primary="Send mail"/>
-                      </ListItem>
-                      <ListItem button>
-                        <ListItemIcon>
-                          <DraftsIcon className={classes.navIcon}/>
-                        </ListItemIcon>
-                        <ListItemText primary="Drafts"/>
-                      </ListItem>
-                    </div>
-                  </List>
-                  <Divider/>
-                  <MenuItem selected={true}>TTTT</MenuItem>
-                  <List className={classes.list}>{otherMailFolderListItems}</List>
+                  {
+                    makeNavItem(classes, <DashboardIcon className={classes.navIcon}/>, 'Dashboard', DASH_PATH, location)
+                  }
+                  {
+                    makeNavItem(classes, <SettingsIcon className={classes.navIcon}/>, 'Setup', SETUP_PATH, location)
+                  }
                 </div>
               </Drawer>
             </MuiThemeProvider>
             <main className={classNames(classes.content, this.state.drawerOpened && classes.contentShift)}>
-              <Typography type="body1" noWrap>
-                {'You think water moves fast? You should see ice.'}
-              </Typography>
+              <Switch>
+                <Route exact path={DASH_PATH} component={DashView}/>
+                <Route exact path={SETUP_PATH} component={SetupView}/>
+              </Switch>
             </main>
           </div>
         </div>
