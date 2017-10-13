@@ -2,6 +2,7 @@ import * as React from 'react';
 import {RouteComponentProps} from "react-router";
 import TextMobileStepper from './mui/TextMobileStepper'
 import Typography from "material-ui/Typography";
+import TreeTable from './TreeTable';
 
 interface ISetupState {
   finished: boolean,
@@ -53,7 +54,7 @@ export default class SetupView extends React.Component<RouteComponentProps<{}>, 
           Setup
         </Typography>
         <div>
-        <TextMobileStepper/>
+          <TreeTable/>
         </div>
       </div>
     );

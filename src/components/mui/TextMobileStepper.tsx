@@ -46,17 +46,17 @@ class TextMobileStepper extends React.Component<any,any> {
         <Paper square elevation={0} className={classes.header}>
           <Typography>Step {this.state.activeStep + 1} of 6</Typography>
         </Paper>
-        <MobileStepper
-          type="text"
-          steps={6}
-          position="static"
-          activeStep={this.state.activeStep}
-          className={classes.mobileStepper}
-          onBack={this.handleBack}
-          onNext={this.handleNext}
-          disableBack={this.state.activeStep === 0}
-          disableNext={this.state.activeStep === 5}
-        />
+        {/*<MobileStepper*/}
+          {/*type="text"*/}
+          {/*steps={6}*/}
+          {/*position="static"*/}
+          {/*activeStep={this.state.activeStep}*/}
+          {/*className={classes.mobileStepper}*/}
+          {/*onBack={this.handleBack}*/}
+          {/*onNext={this.handleNext}*/}
+          {/*disableBack={this.state.activeStep === 0}*/}
+          {/*disableNext={this.state.activeStep === 5}*/}
+        {/*/>*/}
       </div>
     );
   }

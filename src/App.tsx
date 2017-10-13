@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Route, RouteComponentProps, Switch} from 'react-router';
+import {Redirect, Route, RouteComponentProps, Switch} from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import {DASH_PATH, SETUP_PATH, USERS_PATH} from './Path';
 import DashView from './components/DashView';
@@ -29,6 +29,16 @@ import {Location} from "history";
 // import DashView from './dash/DashView';
 // import Users from './users/Users';
 // import Entities from './entities/Entities';
+
+
+const NoMatch = (location): any => (
+  <div className="error-message">
+    <h3>
+      No match for <code>{location.pathname}</code>
+    </h3>
+  </div>
+);
+
 
 
 // const navRoutes = [
@@ -126,6 +136,8 @@ class App extends React.Component<any & RouteComponentProps<{}>, IAppState> {
               <Switch>
                 <Route exact path={DASH_PATH} component={DashView}/>
                 <Route exact path={SETUP_PATH} component={SetupView}/>
+                <Redirect from="/" to={DASH_PATH}/>
+                <Route component={NoMatch}/>
               </Switch>
             </main>
           </div>
